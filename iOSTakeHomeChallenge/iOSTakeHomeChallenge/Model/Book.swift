@@ -16,6 +16,6 @@ struct Book: Decodable {
     let publisher: String
     let country: String
     let mediaType: String
-    let released: String
+    let released: Date
     let characters: [String]
 }

@@ -47,6 +47,7 @@ final class NetworkDataFetcher: NetworkDataFetcherProtocol {
 
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
         do {
             let result = Result(catching: {
                 try decoder.decode(T.self, from: data)

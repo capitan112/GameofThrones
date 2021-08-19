@@ -15,19 +15,14 @@ class BookViewModel {
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatter.dateFormat = "MMM yyyy"
+        
         return dateFormatter
     }()
     
     init(book: Book) {
         self.name = book.name
-        let date: Date? = dateFormatter.date(from: book.released)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM yyyy"
-        self.released = ""
-        if let date = date {
-            self.released = formatter.string(from: date)
-        }
+        self.released = dateFormatter.string(from: book.released )
         self.numberOfPages = String(book.numberOfPages) + " " + "pages"
     }
 }

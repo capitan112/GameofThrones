@@ -43,8 +43,7 @@ class BooksViewController: RootViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BooksTableViewCell") as! BooksTableViewCell
-        let bookViewModel = BookViewModel(book: cachedBooks[indexPath.row])
-        cell.setupWith(bookViewModel: bookViewModel)
+        cell.setupWith(bookViewModel: BookViewModel(book: cachedBooks[indexPath.row]))
         
         return cell
     }
@@ -60,6 +59,6 @@ class BooksTableViewCell: UITableViewCell {
     func setupWith(bookViewModel: BookViewModel) {
         titleLabel.text = bookViewModel.name
         dateLabel.text = bookViewModel.released
-        pagesLabel.text =  bookViewModel.numberOfPages 
+        pagesLabel.text =  bookViewModel.numberOfPages
     }
 }

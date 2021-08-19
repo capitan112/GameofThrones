@@ -25,6 +25,7 @@
 		C9264F3726CD8228003E4B69 /* House.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9264F3626CD8228003E4B69 /* House.swift */; };
 		C9264F3926CD8246003E4B69 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9264F3826CD8246003E4B69 /* Character.swift */; };
 		C9264F3B26CD833E003E4B69 /* BookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9264F3A26CD833E003E4B69 /* BookViewModel.swift */; };
+		C9D7687D26CE4D3F00963BD2 /* DateFormatter+Iso8601Full.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7687C26CE4D3F00963BD2 /* DateFormatter+Iso8601Full.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		C9264F3626CD8228003E4B69 /* House.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = House.swift; sourceTree = "<group>"; };
 		C9264F3826CD8246003E4B69 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		C9264F3A26CD833E003E4B69 /* BookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewModel.swift; sourceTree = "<group>"; };
+		C9D7687C26CE4D3F00963BD2 /* DateFormatter+Iso8601Full.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Iso8601Full.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		117E699225F7A21E00E313E3 /* iOSTakeHomeChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				C9D7687B26CE4CFD00963BD2 /* Extensions */,
 				C9264F3126CD7A59003E4B69 /* ViewControllers */,
 				C9264F2E26CD798B003E4B69 /* Model */,
 				C9264F2726CD78E9003E4B69 /* Network */,
@@ -133,6 +136,14 @@
 				117E69AE25F7A3B600E313E3 /* CharactersViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C9D7687B26CE4CFD00963BD2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C9D7687C26CE4D3F00963BD2 /* DateFormatter+Iso8601Full.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +220,7 @@
 				C9264F3326CD7B03003E4B69 /* BooksViewModel.swift in Sources */,
 				C9264F3726CD8228003E4B69 /* House.swift in Sources */,
 				117E69AF25F7A3B600E313E3 /* CharactersViewController.swift in Sources */,
+				C9D7687D26CE4D3F00963BD2 /* DateFormatter+Iso8601Full.swift in Sources */,
 				C9264F2926CD7916003E4B69 /* NetworkService.swift in Sources */,
 				C9264F3B26CD833E003E4B69 /* BookViewModel.swift in Sources */,
 				C9264F3026CD7998003E4B69 /* Book.swift in Sources */,
