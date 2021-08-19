@@ -11,9 +11,7 @@ import UIKit
 class BooksViewController: RootViewController, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-   
     private var viewModel: BooksViewModelType = BooksViewModel()
-    
     var cachedBooks: [Book] = []
     
     override func viewDidLoad() {
@@ -42,7 +40,7 @@ class BooksViewController: RootViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BooksTableViewCell") as! BooksTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: BooksTableViewCell.reuseIdentifierCell) as! BooksTableViewCell
         cell.setupWith(bookViewModel: BookViewModel(book: cachedBooks[indexPath.row]))
         
         return cell
@@ -51,6 +49,8 @@ class BooksViewController: RootViewController, UITableViewDataSource {
 }
 
 class BooksTableViewCell: UITableViewCell {
+    
+    static let reuseIdentifierCell = "BooksTableViewCell"
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
