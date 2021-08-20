@@ -10,7 +10,7 @@ import UIKit
 
 class HousesViewController: RootViewController, UITableViewDataSource, UISearchBarDelegate {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var searchBar: BlackSearchBar!
     private var viewModel: HousesViewModelType = HousesViewModel()
     var cachedHouses: [House] = []
     private var filteredHouses: [House] = []
@@ -19,20 +19,8 @@ class HousesViewController: RootViewController, UITableViewDataSource, UISearchB
         super.viewDidLoad()
         getHouses()
         searchBar.delegate = self
-        customizeSearchBar()
     }
-    
-    private func customizeSearchBar() {
-        searchBar.barStyle = .black
-        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
-            textfield.backgroundColor = UIColor(red: 0.23, green: 0.22, blue: 0.23, alpha: 1.00)
-            if let leftView = textfield.leftView as? UIImageView {
-                leftView.image = leftView.image?.withRenderingMode(.alwaysTemplate)
-                leftView.tintColor = UIColor.lightGray
-            }
-        }
-    }
-    
+
     private func getHouses() {
         viewModel.fetchHouses(completion: { response in
             switch response {

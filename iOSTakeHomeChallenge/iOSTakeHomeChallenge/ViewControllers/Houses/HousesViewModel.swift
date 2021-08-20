@@ -12,12 +12,7 @@ protocol HousesViewModelType {
     func filtering(houses: [House], target: String) -> [House]
 }
 
-class HousesViewModel: HousesViewModelType {
-    private(set) var dataFetcher: NetworkDataFetcherProtocol!
-    
-    init(dataFetcher: NetworkDataFetcherProtocol = NetworkDataFetcher()) {
-        self.dataFetcher = dataFetcher
-    }
+class HousesViewModel: RootViewModel, HousesViewModelType {
     
     func fetchHouses(completion: @escaping (Result<[House], Error>) -> Void) {
         dataFetcher.fetchHouses(completion: completion)

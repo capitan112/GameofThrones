@@ -14,6 +14,7 @@ struct RequestConstant {
         static let APIPath = "/api/"
         static let APIPathBook = "books"
         static let APIPathHouse = "houses"
+        static let APIPathCharacters = "characters"
     }
 }
 
