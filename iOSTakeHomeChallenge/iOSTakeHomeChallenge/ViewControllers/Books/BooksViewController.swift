@@ -19,7 +19,7 @@ class BooksViewController: RootViewController, UITableViewDataSource {
         getBooks()
     }
       
-    func getBooks() {
+    private func getBooks() {
         viewModel.fetchBooks(completion: { response in
             switch response {
             case let .success(books):
@@ -49,7 +49,6 @@ class BooksViewController: RootViewController, UITableViewDataSource {
 }
 
 class BooksTableViewCell: UITableViewCell {
-    
     static let reuseIdentifierCell = "BooksTableViewCell"
     
     @IBOutlet weak var titleLabel: UILabel!

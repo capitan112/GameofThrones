@@ -35,6 +35,18 @@ class iOSTakeHomeChallengeTests: XCTestCase {
         books = nil
     }
 
+    func testFetchResponseContainsValues() throws {
+        booksViewModel.fetchBooks(completion: { response in
+            switch response {
+            case let .success(books):
+                XCTAssertTrue(books.count > 0)
+            case let .failure(error):
+                debugPrint(error.localizedDescription)
+                XCTFail()
+            }
+        })
+    }
+    
     func testFirstItemInBooks() throws {
         bookViewModel = BookViewModel(book: books[0])
         XCTAssertEqual(bookViewModel.name, "A Game of Thrones")

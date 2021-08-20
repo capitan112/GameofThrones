@@ -13,6 +13,7 @@ struct RequestConstant {
         static let APIHost = "anapioficeandfire.com"
         static let APIPath = "/api/"
         static let APIPathBook = "books"
+        static let APIPathHouse = "houses"
     }
 }
 

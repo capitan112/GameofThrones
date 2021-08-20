@@ -15,6 +15,7 @@ enum ConversionFailure: Error {
 
 protocol NetworkDataFetcherProtocol {
     func fetchBooks(completion: @escaping (Result<[Book], Error>) -> Void)
+    func fetchHouses(completion: @escaping (Result<[House], Error>) -> Void)
 }
 
 final class NetworkDataFetcher: NetworkDataFetcherProtocol {
@@ -26,6 +27,10 @@ final class NetworkDataFetcher: NetworkDataFetcherProtocol {
 
     func fetchBooks(completion: @escaping (Result<[Book], Error>) -> Void) {
         fetchGenericJSONData(path: RequestConstant.Server.APIPathBook, response: completion)
+    }
+    
+    func fetchHouses(completion: @escaping (Result<[House], Error>) -> Void) {
+        fetchGenericJSONData(path: RequestConstant.Server.APIPathHouse, response: completion)
     }
 
     func fetchGenericJSONData<T: Decodable>(path: String, response: @escaping (Result<T, Error>) -> Void) {

@@ -28,6 +28,10 @@
 		C9D7687D26CE4D3F00963BD2 /* DateFormatter+Iso8601Full.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7687C26CE4D3F00963BD2 /* DateFormatter+Iso8601Full.swift */; };
 		C9D7688826CEAA1100963BD2 /* BookViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7688726CEAA1100963BD2 /* BookViewModelTests.swift */; };
 		C9D7689126CEAAA000963BD2 /* NetworkServiceLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7689026CEAAA000963BD2 /* NetworkServiceLocal.swift */; };
+		C9D7689326CEB37000963BD2 /* HousesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7689226CEB37000963BD2 /* HousesViewModel.swift */; };
+		C9D7689626CEB49900963BD2 /* HouseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7689526CEB49900963BD2 /* HouseViewModel.swift */; };
+		C9D7689926CFD58E00963BD2 /* HouseViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7689826CFD58E00963BD2 /* HouseViewModelTests.swift */; };
+		C9D7689B26CFD62100963BD2 /* JsonsStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7689A26CFD62100963BD2 /* JsonsStub.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +70,10 @@
 		C9D7688726CEAA1100963BD2 /* BookViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewModelTests.swift; sourceTree = "<group>"; };
 		C9D7688926CEAA1100963BD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9D7689026CEAAA000963BD2 /* NetworkServiceLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceLocal.swift; sourceTree = "<group>"; };
+		C9D7689226CEB37000963BD2 /* HousesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HousesViewModel.swift; sourceTree = "<group>"; };
+		C9D7689526CEB49900963BD2 /* HouseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseViewModel.swift; sourceTree = "<group>"; };
+		C9D7689826CFD58E00963BD2 /* HouseViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseViewModelTests.swift; sourceTree = "<group>"; };
+		C9D7689A26CFD62100963BD2 /* JsonsStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonsStub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +163,7 @@
 			children = (
 				C9264F2526CD614B003E4B69 /* RootViewController.swift */,
 				C9D7688026CEA92E00963BD2 /* Books */,
-				117E69AB25F7A3A600E313E3 /* HousesViewController.swift */,
+				C9D7689426CEB47D00963BD2 /* Houses */,
 				117E69AE25F7A3B600E313E3 /* CharactersViewController.swift */,
 			);
 			path = ViewControllers;
@@ -184,9 +192,21 @@
 			children = (
 				C9D7688926CEAA1100963BD2 /* Info.plist */,
 				C9D7688726CEAA1100963BD2 /* BookViewModelTests.swift */,
+				C9D7689826CFD58E00963BD2 /* HouseViewModelTests.swift */,
 				C9D7689026CEAAA000963BD2 /* NetworkServiceLocal.swift */,
+				C9D7689A26CFD62100963BD2 /* JsonsStub.swift */,
 			);
 			path = iOSTakeHomeChallengeTests;
+			sourceTree = "<group>";
+		};
+		C9D7689426CEB47D00963BD2 /* Houses */ = {
+			isa = PBXGroup;
+			children = (
+				117E69AB25F7A3A600E313E3 /* HousesViewController.swift */,
+				C9D7689226CEB37000963BD2 /* HousesViewModel.swift */,
+				C9D7689526CEB49900963BD2 /* HouseViewModel.swift */,
+			);
+			path = Houses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,8 +318,10 @@
 				C9264F3B26CD833E003E4B69 /* BookViewModel.swift in Sources */,
 				C9264F3026CD7998003E4B69 /* Book.swift in Sources */,
 				117E69A925F7A39900E313E3 /* BooksViewController.swift in Sources */,
+				C9D7689626CEB49900963BD2 /* HouseViewModel.swift in Sources */,
 				117E699425F7A21E00E313E3 /* AppDelegate.swift in Sources */,
 				C9264F2D26CD7970003E4B69 /* RequestConstant.swift in Sources */,
+				C9D7689326CEB37000963BD2 /* HousesViewModel.swift in Sources */,
 				C9264F3926CD8246003E4B69 /* Character.swift in Sources */,
 				C9264F2426CD5948003E4B69 /* GCDBlackBox.swift in Sources */,
 				C9264F2B26CD7958003E4B69 /* NetworkDataFetcher.swift in Sources */,
@@ -313,6 +335,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9D7689126CEAAA000963BD2 /* NetworkServiceLocal.swift in Sources */,
+				C9D7689B26CFD62100963BD2 /* JsonsStub.swift in Sources */,
+				C9D7689926CFD58E00963BD2 /* HouseViewModelTests.swift in Sources */,
 				C9D7688826CEAA1100963BD2 /* BookViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
