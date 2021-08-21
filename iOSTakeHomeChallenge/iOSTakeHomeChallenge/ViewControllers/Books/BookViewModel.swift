@@ -13,8 +13,8 @@ class BookViewModel {
     private(set) var numberOfPages: String
 
     init(book: Book) {
-        self.name = book.name
-        self.released = DateFormatter.monthYearFormatter.string(from: book.released)
-        self.numberOfPages = String(book.numberOfPages) + " " + "pages"
+        name = book.name
+        released = DateFormatter.monthYearFormatter.string(from: book.released)
+        numberOfPages = String(book.numberOfPages) + " " + "pages"
     }
 }

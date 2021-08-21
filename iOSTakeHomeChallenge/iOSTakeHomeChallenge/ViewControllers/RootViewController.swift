@@ -8,7 +8,6 @@
 import UIKit
 
 class RootViewController: UIViewController {
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

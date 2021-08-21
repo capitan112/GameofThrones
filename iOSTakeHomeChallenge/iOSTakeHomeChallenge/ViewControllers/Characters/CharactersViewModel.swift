@@ -13,20 +13,19 @@ protocol CharactersViewModelType {
 }
 
 class CharactersViewModel: RootViewModel, CharactersViewModelType {
-    
     func fetchCharacters(completion: @escaping (Result<[Character], Error>) -> Void) {
         dataFetcher.fetchCharacters(completion: completion)
     }
-    
+
     func filtering(characters: [Character], target: String) -> [Character] {
         if target.isEmpty {
             return characters
         }
-        
+
         let filteredCharacters = characters.filter { (character: Character) -> Bool in
-            return character.name.lowercased().range(of: target, options: .caseInsensitive, range: nil, locale: nil) != nil
+            character.name.lowercased().range(of: target, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
-        
+
         return filteredCharacters
     }
 }

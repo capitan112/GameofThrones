@@ -17,5 +17,3 @@ struct RequestConstant {
         static let APIPathCharacters = "characters"
     }
 }
-
-

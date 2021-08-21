@@ -13,21 +13,19 @@ protocol HousesViewModelType {
 }
 
 class HousesViewModel: RootViewModel, HousesViewModelType {
-    
     func fetchHouses(completion: @escaping (Result<[House], Error>) -> Void) {
         dataFetcher.fetchHouses(completion: completion)
     }
-    
+
     func filtering(houses: [House], target: String) -> [House] {
         if target.isEmpty {
             return houses
         }
-        
+
         let filteredHouses = houses.filter { (house: House) -> Bool in
-            return house.name.lowercased().range(of: target, options: .caseInsensitive, range: nil, locale: nil) != nil
+            house.name.lowercased().range(of: target, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
-        
+
         return filteredHouses
     }
 }
-

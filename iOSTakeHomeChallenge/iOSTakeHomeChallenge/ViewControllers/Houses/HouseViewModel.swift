@@ -13,8 +13,8 @@ class HouseViewModel {
     private(set) var words: String
 
     init(house: House) {
-        self.name = house.name
-        self.region = house.region
-        self.words = house.words
+        name = house.name
+        region = house.region
+        words = house.words
     }
 }

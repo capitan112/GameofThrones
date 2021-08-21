@@ -5,15 +5,14 @@
 //  Created by Oleksiy Chebotarov on 20/08/2021.
 //
 
-import XCTest
 @testable import iOSTakeHomeChallenge
+import XCTest
 
 class CharactersViewModelTests: XCTestCase {
-
     var characterViewModel: CharacterViewModel!
     var charactersViewModel: CharactersViewModelType!
     var characters: [Character]!
-    
+
     override func setUpWithError() throws {
         let networkServiceLocal = NetworkServiceLocal(json: charactersJson)
         let localDataFetcher = NetworkDataFetcher(networkingService: networkServiceLocal)
@@ -53,7 +52,7 @@ class CharactersViewModelTests: XCTestCase {
             XCTFail()
             return
         }
-          
+
         characterViewModel = CharacterViewModel(character: firstCharacter)
         XCTAssertEqual(characterViewModel.name, "")
         XCTAssertEqual(characterViewModel.culture, "Braavosi")
@@ -70,5 +69,4 @@ class CharactersViewModelTests: XCTestCase {
         XCTAssertEqual(characterViewModel.died, "")
         XCTAssertEqual(characterViewModel.seasons, "I-IV, VI")
     }
-
 }

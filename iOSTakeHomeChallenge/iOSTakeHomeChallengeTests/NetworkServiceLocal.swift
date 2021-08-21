@@ -9,14 +9,13 @@ import Foundation
 @testable import iOSTakeHomeChallenge
 
 class NetworkServiceLocal: NetworkProtocol {
-    
     private var dataSourceJson: String
 
     init(json: String) {
-        self.dataSourceJson = json
+        dataSourceJson = json
     }
-    
-    func request(path: String, completion: @escaping (Result<Data, Error>) -> Void) {
+
+    func request(path _: String, completion: @escaping (Result<Data, Error>) -> Void) {
         completion(.success(dataSourceJson.data(using: .utf8)!))
     }
 }

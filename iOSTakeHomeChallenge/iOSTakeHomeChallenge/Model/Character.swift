@@ -14,7 +14,7 @@ struct Character: Decodable {
     let culture: String
     let born: String
     let died: String
-    let aliases:  [String]
+    let aliases: [String]
     let father: String
     let mother: String
     let spouse: String

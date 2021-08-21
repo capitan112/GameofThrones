@@ -29,15 +29,15 @@ final class NetworkDataFetcher: NetworkDataFetcherProtocol {
     func fetchBooks(completion: @escaping (Result<[Book], Error>) -> Void) {
         fetchGenericJSONData(path: RequestConstant.Server.APIPathBook, response: completion)
     }
-    
+
     func fetchHouses(completion: @escaping (Result<[House], Error>) -> Void) {
         fetchGenericJSONData(path: RequestConstant.Server.APIPathHouse, response: completion)
     }
 
-    func fetchCharacters(completion: @escaping (Result<[Character], Error>) -> Void) {   fetchGenericJSONData(path: RequestConstant.Server.APIPathCharacters, response: completion)
+    func fetchCharacters(completion: @escaping (Result<[Character], Error>) -> Void) { fetchGenericJSONData(path: RequestConstant.Server.APIPathCharacters, response: completion)
     }
-    
-func fetchGenericJSONData<T: Decodable>(path: String, response: @escaping (Result<T, Error>) -> Void) {
+
+    func fetchGenericJSONData<T: Decodable>(path: String, response: @escaping (Result<T, Error>) -> Void) {
         networkingService.request(path: path) { dataResponse in
             guard let data = try? dataResponse.get() else {
                 response(.failure(ConversionFailure.responceError))

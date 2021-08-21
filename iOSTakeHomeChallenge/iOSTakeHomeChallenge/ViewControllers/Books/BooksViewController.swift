@@ -9,16 +9,15 @@ import Foundation
 import UIKit
 
 class BooksViewController: RootViewController, UITableViewDataSource {
-    
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
     private var viewModel: BooksViewModelType = BooksViewModel()
     var cachedBooks: [Book] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         getBooks()
     }
-      
+
     private func getBooks() {
         viewModel.fetchBooks(completion: { response in
             switch response {
@@ -29,35 +28,34 @@ class BooksViewController: RootViewController, UITableViewDataSource {
             }
         })
     }
-    
+
     func loadData(books: [Book]) {
         cachedBooks = books
         reload(tableView: tableView)
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         cachedBooks.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BooksTableViewCell.reuseIdentifierCell) as! BooksTableViewCell
         cell.setupWith(bookViewModel: BookViewModel(book: cachedBooks[indexPath.row]))
-        
+
         return cell
     }
-    
 }
 
 class BooksTableViewCell: UITableViewCell {
     static let reuseIdentifierCell = "BooksTableViewCell"
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var pagesLabel: UILabel!
-    
+
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var pagesLabel: UILabel!
+
     func setupWith(bookViewModel: BookViewModel) {
         titleLabel.text = bookViewModel.name
         dateLabel.text = bookViewModel.released
-        pagesLabel.text =  bookViewModel.numberOfPages
+        pagesLabel.text = bookViewModel.numberOfPages
     }
 }

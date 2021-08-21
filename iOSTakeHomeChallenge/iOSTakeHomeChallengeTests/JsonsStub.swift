@@ -307,7 +307,7 @@ let charactersJson = """
   }
 ]
 """
-    
+
 let housesJson = """
   [
     {
