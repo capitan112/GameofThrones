@@ -185,10 +185,10 @@
 			isa = PBXGroup;
 			children = (
 				C9264F2526CD614B003E4B69 /* RootViewController.swift */,
+				C91677AB26CFE805009A6723 /* RootViewModel.swift */,
 				C9D7688026CEA92E00963BD2 /* Books */,
 				C9D7689426CEB47D00963BD2 /* Houses */,
 				C91677B326CFFD40009A6723 /* Characters */,
-				C91677AB26CFE805009A6723 /* RootViewModel.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

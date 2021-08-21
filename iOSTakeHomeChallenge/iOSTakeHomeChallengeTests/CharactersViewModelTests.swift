@@ -22,9 +22,7 @@ class CharactersViewModelTests: XCTestCase {
         charactersViewModel.fetchCharacters(completion: { response in
             switch response {
             case let .success(characters):
-//                performUIUpdatesOnMain {
-                    self.characters = characters
-//                }
+                self.characters = characters
             case let .failure(error):
                 debugPrint(error.localizedDescription)
                 XCTFail()
@@ -70,7 +68,7 @@ class CharactersViewModelTests: XCTestCase {
         XCTAssertEqual(characterViewModel.culture, "")
         XCTAssertEqual(characterViewModel.born, "")
         XCTAssertEqual(characterViewModel.died, "")
-        XCTAssertEqual(characterViewModel.seasons, "I, II, III, IV, VI")
+        XCTAssertEqual(characterViewModel.seasons, "I-IV, VI")
     }
 
 }

@@ -45,12 +45,12 @@ class CharacterViewModelTests: XCTestCase {
     
     func testSecondItemInCharacters() throws {
         characterViewModel = CharacterViewModel(character: characters[1])
-        XCTAssertEqual(characterViewModel.seasons, "I, II, III, IV, VI")
+        XCTAssertEqual(characterViewModel.seasons, "I-IV, VI")
     }
     
     func testSeasonConverter() throws {
         let seasons = ["Season 1", "Season 2", "Season 3"]
-        let expected = "I, II, III"
+        let expected = "I-III"
         characterViewModel = CharacterViewModel(character: characters[0])
         let result = characterViewModel.filtering(seasons: seasons)
         XCTAssertEqual(result, expected)
@@ -58,7 +58,7 @@ class CharacterViewModelTests: XCTestCase {
 
     func test6SeasonConverter() throws {
         let seasons = ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6"]
-        let expected = "I, II, III, IV, V, VI"
+        let expected = "I-VI"
         characterViewModel = CharacterViewModel(character: characters[0])
         let result = characterViewModel.filtering(seasons: seasons)
         XCTAssertEqual(result, expected)
@@ -82,7 +82,7 @@ class CharacterViewModelTests: XCTestCase {
     
     func testAllSeasonsSeasonConverter() throws {
         let seasons = ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6", "Season 7", "Season 8"]
-        let expected = "I, II, III, IV, V, VI, VII, VIII"
+        let expected = "I-VIII"
         characterViewModel = CharacterViewModel(character: characters[0])
         let result = characterViewModel.filtering(seasons: seasons)
         XCTAssertEqual(result, expected)
@@ -90,11 +90,34 @@ class CharacterViewModelTests: XCTestCase {
     
     func testNineSeasonsSeasonConverter() throws {
         let seasons = ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6", "Season 7", "Season 8", "Season 9"]
-        let expected = "I, II, III, IV, V, VI, VII, VIII"
+        let expected = "I-VIII"
         characterViewModel = CharacterViewModel(character: characters[0])
         let result = characterViewModel.filtering(seasons: seasons)
         XCTAssertEqual(result, expected)
     }
-
+    
+    func test4SeasonsAndOneConverter() throws {
+        let seasons = ["Season 1", "Season 2", "Season 3", "Season 4","Season 6"]
+        let expected = "I-IV, VI"
+        characterViewModel = CharacterViewModel(character: characters[0])
+        let result = characterViewModel.filtering(seasons: seasons)
+        XCTAssertEqual(result, expected)
+    }
+    
+    func testSeasons2BocksConverter() throws {
+        let seasons = ["Season 1", "Season 2", "Season 3", "Season 5","Season 6"]
+        let expected = "I-III, V-VI"
+        characterViewModel = CharacterViewModel(character: characters[0])
+        let result = characterViewModel.filtering(seasons: seasons)
+        XCTAssertEqual(result, expected)
+    }
+    
+    func testSeasons3BocksConverter() throws {
+        let seasons = ["Season 1", "Season 2", "Season 4", "Season 5","Season 7", "Season 8"]
+        let expected = "I-II, IV-V, VII-VIII"
+        characterViewModel = CharacterViewModel(character: characters[0])
+        let result = characterViewModel.filtering(seasons: seasons)
+        XCTAssertEqual(result, expected)
+    }
 
 }
