@@ -21,7 +21,6 @@
 		C91677AE26CFE911009A6723 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91677AD26CFE911009A6723 /* CharacterViewModel.swift */; };
 		C91677B026CFEADD009A6723 /* CharactersViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91677AF26CFEADD009A6723 /* CharactersViewModelTests.swift */; };
 		C91677B226CFF67F009A6723 /* CharacterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91677B126CFF67F009A6723 /* CharacterViewModelTests.swift */; };
-		C9264F2426CD5948003E4B69 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9264F2326CD5948003E4B69 /* GCDBlackBox.swift */; };
 		C9264F2626CD614B003E4B69 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9264F2526CD614B003E4B69 /* RootViewController.swift */; };
 		C9264F2926CD7916003E4B69 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9264F2826CD7916003E4B69 /* NetworkService.swift */; };
 		C9264F2B26CD7958003E4B69 /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9264F2A26CD7958003E4B69 /* NetworkDataFetcher.swift */; };
@@ -38,6 +37,7 @@
 		C9D7689626CEB49900963BD2 /* HouseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7689526CEB49900963BD2 /* HouseViewModel.swift */; };
 		C9D7689926CFD58E00963BD2 /* HouseViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7689826CFD58E00963BD2 /* HouseViewModelTests.swift */; };
 		C9D7689B26CFD62100963BD2 /* JsonsStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7689A26CFD62100963BD2 /* JsonsStub.swift */; };
+		C9DACD7926D2541C00754CF9 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DACD7826D2541C00754CF9 /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,6 @@
 		C91677AD26CFE911009A6723 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		C91677AF26CFEADD009A6723 /* CharactersViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModelTests.swift; sourceTree = "<group>"; };
 		C91677B126CFF67F009A6723 /* CharacterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModelTests.swift; sourceTree = "<group>"; };
-		C9264F2326CD5948003E4B69 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GCDBlackBox.swift; path = "../../../../../../../../../Deveploment/Projects/ios-penn/PennN/ViewModels/GCDBlackBox.swift"; sourceTree = "<group>"; };
 		C9264F2526CD614B003E4B69 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		C9264F2826CD7916003E4B69 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = iOSTakeHomeChallenge/Network/NetworkService.swift; sourceTree = SOURCE_ROOT; };
 		C9264F2A26CD7958003E4B69 /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
@@ -86,6 +85,7 @@
 		C9D7689526CEB49900963BD2 /* HouseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseViewModel.swift; sourceTree = "<group>"; };
 		C9D7689826CFD58E00963BD2 /* HouseViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseViewModelTests.swift; sourceTree = "<group>"; };
 		C9D7689A26CFD62100963BD2 /* JsonsStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonsStub.swift; sourceTree = "<group>"; };
+		C9DACD7826D2541C00754CF9 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,7 @@
 		C9264F2226CD5941003E4B69 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				C9264F2326CD5948003E4B69 /* GCDBlackBox.swift */,
+				C9DACD7826D2541C00754CF9 /* GCDBlackBox.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -353,8 +353,8 @@
 				C91677A826CFE3D7009A6723 /* BlackSearchBar.swift in Sources */,
 				C9D7689326CEB37000963BD2 /* HousesViewModel.swift in Sources */,
 				C9264F3926CD8246003E4B69 /* Character.swift in Sources */,
-				C9264F2426CD5948003E4B69 /* GCDBlackBox.swift in Sources */,
 				C9264F2B26CD7958003E4B69 /* NetworkDataFetcher.swift in Sources */,
+				C9DACD7926D2541C00754CF9 /* GCDBlackBox.swift in Sources */,
 				C9264F2626CD614B003E4B69 /* RootViewController.swift in Sources */,
 				117E699625F7A21E00E313E3 /* SceneDelegate.swift in Sources */,
 			);
