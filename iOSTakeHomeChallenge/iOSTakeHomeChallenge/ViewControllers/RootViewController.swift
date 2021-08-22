@@ -19,13 +19,25 @@ class RootViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    
+    func showAlertAndStopActivityIndicator() {
+        showAlert()
+        stopActivityIndicator()
+    }
+    
+    private func showAlert() {
+        performUIUpdatesOnMain {
+            let alert = UIAlertController(title: "Error", message: "Something goes wrong", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 
     // MARK: UIActivityIndicatorView methods
 
     private func activityIndicator(style: UIActivityIndicatorView.Style = .large,
                                    frame: CGRect? = nil,
-                                   center: CGPoint? = nil) -> UIActivityIndicatorView
-    {
+                                   center: CGPoint? = nil) -> UIActivityIndicatorView {
         let activityIndicatorView = UIActivityIndicatorView(style: style)
         activityIndicatorView.color = .white
 

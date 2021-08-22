@@ -30,6 +30,7 @@ class HousesViewController: RootViewController, UITableViewDataSource {
                 self.loadData(houses: houses)
             case let .failure(error):
                 debugPrint(error.localizedDescription)
+                self.showAlertAndStopActivityIndicator()
             }
         })
     }

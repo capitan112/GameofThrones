@@ -27,6 +27,7 @@ class BooksViewController: RootViewController, UITableViewDataSource {
                 self.loadData(books: books)
             case let .failure(error):
                 debugPrint(error.localizedDescription)
+                self.showAlertAndStopActivityIndicator()
             }
         })
     }

@@ -30,6 +30,7 @@ class CharactersViewController: RootViewController, UITableViewDataSource {
                 self.loadData(characters: characters)
             case let .failure(error):
                 debugPrint(error.localizedDescription)
+                self.showAlertAndStopActivityIndicator()
             }
         })
     }
