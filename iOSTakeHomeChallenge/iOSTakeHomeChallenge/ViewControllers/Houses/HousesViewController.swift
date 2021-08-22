@@ -17,11 +17,13 @@ class HousesViewController: RootViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addActivityIndicator(center: self.view.center)
         getHouses()
         searchBar.delegate = self
     }
 
     private func getHouses() {
+        startActivityIndicator()
         viewModel.fetchHouses(completion: { response in
             switch response {
             case let .success(houses):
@@ -36,6 +38,7 @@ class HousesViewController: RootViewController, UITableViewDataSource {
         cachedHouses = houses
         filteredHouses = cachedHouses
         reload(tableView: tableView)
+        stopActivityIndicator()
     }
 
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
@@ -47,25 +50,6 @@ class HousesViewController: RootViewController, UITableViewDataSource {
         cell.setupWith(house: HouseViewModel(house: filteredHouses[indexPath.row]))
 
         return cell
-    }
-}
-
-class HouseTableViewCell: UITableViewCell {
-    static let reuseIdentifierCell = "HouseTableViewCell"
-
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var regionLabel: UILabel!
-    @IBOutlet var wordsLabel: UILabel!
-
-    func setupWith(house: HouseViewModel) {
-        nameLabel.text = house.name
-        regionLabel.text = house.region
-        if house.words.isEmpty {
-            wordsLabel.isHidden = true
-        } else {
-            wordsLabel.isHidden = false
-            wordsLabel.text = house.words
-        }
     }
 }
 
@@ -82,6 +66,33 @@ extension HousesViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = ""
+        filteredHouses = cachedHouses
         searchBar.resignFirstResponder()
+        reload(tableView: tableView)
+    }
+}
+
+class HouseTableViewCell: UITableViewCell {
+    static let reuseIdentifierCell = "HouseTableViewCell"
+
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var regionLabel: UILabel!
+    @IBOutlet var wordsLabel: UILabel!
+
+    override func prepareForReuse() {
+        nameLabel.text = ""
+        regionLabel.text = ""
+        wordsLabel.text = ""
+    }
+    
+    func setupWith(house: HouseViewModel) {
+        nameLabel.text = house.name
+        regionLabel.text = house.region
+        if house.words.isEmpty {
+            wordsLabel.isHidden = true
+        } else {
+            wordsLabel.isHidden = false
+            wordsLabel.text = house.words
+        }
     }
 }

@@ -17,11 +17,13 @@ class CharactersViewController: RootViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getCharacters()
+        addActivityIndicator(center: self.view.center)
         searchBar.delegate = self
+        getCharacters()
     }
 
     func getCharacters() {
+        startActivityIndicator()
         viewModel.fetchCharacters(completion: { response in
             switch response {
             case let .success(characters):
@@ -36,6 +38,7 @@ class CharactersViewController: RootViewController, UITableViewDataSource {
         cachedCharacters = characters
         filteredCharacters = cachedCharacters
         reload(tableView: tableView)
+        stopActivityIndicator()
     }
 
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
@@ -47,22 +50,6 @@ class CharactersViewController: RootViewController, UITableViewDataSource {
         cell.setupWith(viewModel: CharacterViewModel(character: filteredCharacters[indexPath.row]))
 
         return cell
-    }
-}
-
-class CharacterTableViewCell: UITableViewCell {
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var cultureLabel: UILabel!
-    @IBOutlet var bornLabel: UILabel!
-    @IBOutlet var diedLabel: UILabel!
-    @IBOutlet var seasonLabel: UILabel!
-
-    func setupWith(viewModel: CharacterViewModel) {
-        nameLabel.text = viewModel.name
-        cultureLabel.text = viewModel.culture
-        bornLabel.text = viewModel.born
-        diedLabel.text = viewModel.died
-        seasonLabel.text = viewModel.seasons
     }
 }
 
@@ -79,6 +66,32 @@ extension CharactersViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = ""
+        filteredCharacters = cachedCharacters
         searchBar.resignFirstResponder()
+        reload(tableView: tableView)
+    }
+}
+
+class CharacterTableViewCell: UITableViewCell {
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var cultureLabel: UILabel!
+    @IBOutlet var bornLabel: UILabel!
+    @IBOutlet var diedLabel: UILabel!
+    @IBOutlet var seasonLabel: UILabel!
+    
+    override func prepareForReuse() {
+        nameLabel.text = ""
+        cultureLabel.text = ""
+        bornLabel.text = ""
+        diedLabel.text = ""
+        seasonLabel.text = ""
+    }
+    
+    func setupWith(viewModel: CharacterViewModel) {
+        nameLabel.text = viewModel.name
+        cultureLabel.text = viewModel.culture
+        bornLabel.text = viewModel.born
+        diedLabel.text = viewModel.died
+        seasonLabel.text = viewModel.seasons
     }
 }

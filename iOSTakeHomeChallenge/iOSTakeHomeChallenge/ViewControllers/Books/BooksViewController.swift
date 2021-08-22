@@ -15,10 +15,12 @@ class BooksViewController: RootViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addActivityIndicator(center: self.view.center)
         getBooks()
     }
 
     private func getBooks() {
+        startActivityIndicator()
         viewModel.fetchBooks(completion: { response in
             switch response {
             case let .success(books):
@@ -32,6 +34,7 @@ class BooksViewController: RootViewController, UITableViewDataSource {
     func loadData(books: [Book]) {
         cachedBooks = books
         reload(tableView: tableView)
+        stopActivityIndicator()
     }
 
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
@@ -48,11 +51,17 @@ class BooksViewController: RootViewController, UITableViewDataSource {
 
 class BooksTableViewCell: UITableViewCell {
     static let reuseIdentifierCell = "BooksTableViewCell"
-
+    
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var pagesLabel: UILabel!
 
+    override func prepareForReuse() {
+        titleLabel.text = ""
+        dateLabel.text = ""
+        pagesLabel.text = ""
+    }
+    
     func setupWith(bookViewModel: BookViewModel) {
         titleLabel.text = bookViewModel.name
         dateLabel.text = bookViewModel.released

@@ -69,4 +69,14 @@ class CharactersViewModelTests: XCTestCase {
         XCTAssertEqual(characterViewModel.died, "")
         XCTAssertEqual(characterViewModel.seasons, "I-IV, VI")
     }
+    
+    func testFilterCharactersByEmptyValue() throws {
+        let filteredCharacters = charactersViewModel.filtering(characters: characters, target: "")
+        XCTAssertEqual(filteredCharacters.count, 10)
+    }
+    
+    func testFilterCharactersByWalder() throws {
+        let filteredCharacters = charactersViewModel.filtering(characters: characters, target: "Walder")
+        XCTAssertEqual(filteredCharacters.count, 1)
+    }
 }
