@@ -17,7 +17,7 @@ class CharactersViewController: RootViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addActivityIndicator(center: self.view.center)
+        addActivityIndicator(center: view.center)
         searchBar.delegate = self
         getCharacters()
     }
@@ -78,7 +78,7 @@ class CharacterTableViewCell: UITableViewCell {
     @IBOutlet var bornLabel: UILabel!
     @IBOutlet var diedLabel: UILabel!
     @IBOutlet var seasonLabel: UILabel!
-    
+
     override func prepareForReuse() {
         nameLabel.text = ""
         cultureLabel.text = ""
@@ -86,7 +86,7 @@ class CharacterTableViewCell: UITableViewCell {
         diedLabel.text = ""
         seasonLabel.text = ""
     }
-    
+
     func setupWith(viewModel: CharacterViewModel) {
         nameLabel.text = viewModel.name
         cultureLabel.text = viewModel.culture

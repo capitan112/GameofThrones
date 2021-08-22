@@ -15,7 +15,7 @@ class BooksViewController: RootViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addActivityIndicator(center: self.view.center)
+        addActivityIndicator(center: view.center)
         getBooks()
     }
 
@@ -51,7 +51,7 @@ class BooksViewController: RootViewController, UITableViewDataSource {
 
 class BooksTableViewCell: UITableViewCell {
     static let reuseIdentifierCell = "BooksTableViewCell"
-    
+
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var pagesLabel: UILabel!
@@ -61,7 +61,7 @@ class BooksTableViewCell: UITableViewCell {
         dateLabel.text = ""
         pagesLabel.text = ""
     }
-    
+
     func setupWith(bookViewModel: BookViewModel) {
         titleLabel.text = bookViewModel.name
         dateLabel.text = bookViewModel.released

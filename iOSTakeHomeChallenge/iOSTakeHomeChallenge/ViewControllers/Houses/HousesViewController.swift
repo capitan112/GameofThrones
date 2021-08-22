@@ -17,7 +17,7 @@ class HousesViewController: RootViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addActivityIndicator(center: self.view.center)
+        addActivityIndicator(center: view.center)
         getHouses()
         searchBar.delegate = self
     }
@@ -84,7 +84,7 @@ class HouseTableViewCell: UITableViewCell {
         regionLabel.text = ""
         wordsLabel.text = ""
     }
-    
+
     func setupWith(house: HouseViewModel) {
         nameLabel.text = house.name
         regionLabel.text = house.region
