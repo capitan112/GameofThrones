@@ -6,26 +6,43 @@
 //
 
 import Foundation
+import UIKit
 
 protocol HousesViewModelType {
+    var cachedHouses: [House] { get }
+    var filteredHouses: [House] { get }
     func fetchHouses(completion: @escaping (Result<[House], Error>) -> Void)
-    func filtering(houses: [House], target: String) -> [House]
+    func filtering(with target: String)
+    func setUp(houses: [House])
+    func discardSearching()
 }
 
 class HousesViewModel: RootViewModel, HousesViewModelType {
+    private(set) var cachedHouses: [House] = []
+    private(set) var filteredHouses: [House] = []
+
     func fetchHouses(completion: @escaping (Result<[House], Error>) -> Void) {
         dataFetcher.fetchHouses(completion: completion)
     }
 
-    func filtering(houses: [House], target: String) -> [House] {
+    func setUp(houses: [House]) {
+        cachedHouses = houses
+        filteredHouses = houses
+    }
+
+    func discardSearching() {
+        filteredHouses = cachedHouses
+    }
+
+    func filtering(with target: String) {
         if target.isEmpty {
-            return houses
+            discardSearching()
+
+            return
         }
 
-        let filteredHouses = houses.filter { (house: House) -> Bool in
+        filteredHouses = cachedHouses.filter { (house: House) -> Bool in
             house.name.lowercased().range(of: target, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
-
-        return filteredHouses
     }
 }

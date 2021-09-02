@@ -12,8 +12,6 @@ class CharactersViewController: RootViewController, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: BlackSearchBar!
     private var viewModel: CharactersViewModelType = CharactersViewModel()
-    private var filteredCharacters: [Character] = []
-    var cachedCharacters: [Character] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,19 +34,18 @@ class CharactersViewController: RootViewController, UITableViewDataSource {
     }
 
     func loadData(characters: [Character]) {
-        cachedCharacters = characters
-        filteredCharacters = cachedCharacters
+        viewModel.setUp(characters: characters)
         reload(tableView: tableView)
         stopActivityIndicator()
     }
 
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        filteredCharacters.count
+        viewModel.filteredCharacters.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterTableViewCell") as! CharacterTableViewCell
-        cell.setupWith(viewModel: CharacterViewModel(character: filteredCharacters[indexPath.row]))
+        cell.setupWith(viewModel: CharacterViewModel(character: viewModel.filteredCharacters[indexPath.row]))
 
         return cell
     }
@@ -56,7 +53,7 @@ class CharactersViewController: RootViewController, UITableViewDataSource {
 
 extension CharactersViewController: UISearchBarDelegate {
     func searchBar(_: UISearchBar, textDidChange searchText: String) {
-        filteredCharacters = viewModel.filtering(characters: cachedCharacters, target: searchText)
+        viewModel.filtering(with: searchText)
         reload(tableView: tableView)
     }
 
@@ -67,7 +64,7 @@ extension CharactersViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = ""
-        filteredCharacters = cachedCharacters
+        viewModel.discardSearching()
         searchBar.resignFirstResponder()
         reload(tableView: tableView)
     }

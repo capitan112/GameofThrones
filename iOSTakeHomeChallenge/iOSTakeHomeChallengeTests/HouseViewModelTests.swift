@@ -22,6 +22,7 @@ class HouseViewModelTests: XCTestCase {
             switch response {
             case let .success(houses):
                 self.houses = houses
+                self.housesViewModel.setUp(houses: houses)
             case let .failure(error):
                 debugPrint(error.localizedDescription)
                 XCTFail()
@@ -79,28 +80,28 @@ class HouseViewModelTests: XCTestCase {
     }
 
     func testFilterHousesByEmptyValue() throws {
-        let filteredHouses = housesViewModel.filtering(houses: houses, target: "")
-        XCTAssertEqual(filteredHouses.count, 10)
+        housesViewModel.filtering(with: "")
+        XCTAssertEqual(housesViewModel.filteredHouses.count, 10)
     }
 
     func testFilterHousesByAmb() throws {
         let target = "Amb"
-        let filteredHouses = housesViewModel.filtering(houses: houses, target: target)
-        XCTAssertEqual(filteredHouses.count, 2)
-        XCTAssertTrue(filteredHouses.first?.name.contains(target) ?? false)
-        XCTAssertTrue(filteredHouses.last?.name.contains(target) ?? false)
+        housesViewModel.filtering(with: target)
+        XCTAssertEqual(housesViewModel.filteredHouses.count, 2)
+        XCTAssertTrue(housesViewModel.filteredHouses.first?.name.contains(target) ?? false)
+        XCTAssertTrue(housesViewModel.filteredHouses.last?.name.contains(target) ?? false)
     }
 
     func testFilterHousesByArr() throws {
         let target = "Arr"
-        let filteredHouses = housesViewModel.filtering(houses: houses, target: target)
-        XCTAssertEqual(filteredHouses.count, 3)
-        XCTAssertTrue(filteredHouses.first?.name.contains(target) ?? false)
+        housesViewModel.filtering(with: target)
+        XCTAssertEqual(housesViewModel.filteredHouses.count, 3)
+        XCTAssertTrue(housesViewModel.filteredHouses.first?.name.contains(target) ?? false)
     }
 
     func testFilterHousesByAbracadabra() throws {
         let target = "Abracadabra"
-        let filteredHouses = housesViewModel.filtering(houses: houses, target: target)
-        XCTAssertEqual(filteredHouses.count, 0)
+        housesViewModel.filtering(with: target)
+        XCTAssertEqual(housesViewModel.filteredHouses.count, 0)
     }
 }

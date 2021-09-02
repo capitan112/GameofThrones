@@ -12,8 +12,6 @@ class HousesViewController: RootViewController, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: BlackSearchBar!
     private var viewModel: HousesViewModelType = HousesViewModel()
-    var cachedHouses: [House] = []
-    private var filteredHouses: [House] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,19 +34,18 @@ class HousesViewController: RootViewController, UITableViewDataSource {
     }
 
     func loadData(houses: [House]) {
-        cachedHouses = houses
-        filteredHouses = cachedHouses
+        viewModel.setUp(houses: houses)
         reload(tableView: tableView)
         stopActivityIndicator()
     }
 
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        filteredHouses.count
+        viewModel.filteredHouses.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HouseTableViewCell.reuseIdentifierCell) as! HouseTableViewCell
-        cell.setupWith(house: HouseViewModel(house: filteredHouses[indexPath.row]))
+        cell.setupWith(house: HouseViewModel(house: viewModel.filteredHouses[indexPath.row]))
 
         return cell
     }
@@ -56,7 +53,7 @@ class HousesViewController: RootViewController, UITableViewDataSource {
 
 extension HousesViewController: UISearchBarDelegate {
     func searchBar(_: UISearchBar, textDidChange searchText: String) {
-        filteredHouses = viewModel.filtering(houses: cachedHouses, target: searchText)
+        viewModel.filtering(with: searchText)
         reload(tableView: tableView)
     }
 
@@ -67,7 +64,7 @@ extension HousesViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.text = ""
-        filteredHouses = cachedHouses
+        viewModel.discardSearching()
         searchBar.resignFirstResponder()
         reload(tableView: tableView)
     }

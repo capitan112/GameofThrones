@@ -8,24 +8,38 @@
 import Foundation
 
 protocol CharactersViewModelType {
+    var cachedCharacters: [Character] { get }
+    var filteredCharacters: [Character] { get }
     func fetchCharacters(completion: @escaping (Result<[Character], Error>) -> Void)
-    func filtering(characters: [Character], target: String) -> [Character]
+    func filtering(with target: String)
+    func setUp(characters: [Character])
+    func discardSearching()
 }
 
 class CharactersViewModel: RootViewModel, CharactersViewModelType {
+    private(set) var cachedCharacters: [Character] = []
+    private(set) var filteredCharacters: [Character] = []
     func fetchCharacters(completion: @escaping (Result<[Character], Error>) -> Void) {
         dataFetcher.fetchCharacters(completion: completion)
     }
 
-    func filtering(characters: [Character], target: String) -> [Character] {
+    func setUp(characters: [Character]) {
+        cachedCharacters = characters
+        filteredCharacters = cachedCharacters
+    }
+
+    func discardSearching() {
+        filteredCharacters = cachedCharacters
+    }
+
+    func filtering(with target: String) {
         if target.isEmpty {
-            return characters
+            discardSearching()
+            return
         }
 
-        let filteredCharacters = characters.filter { (character: Character) -> Bool in
+        filteredCharacters = cachedCharacters.filter { (character: Character) -> Bool in
             character.name.lowercased().range(of: target, options: .caseInsensitive, range: nil, locale: nil) != nil
         }
-
-        return filteredCharacters
     }
 }

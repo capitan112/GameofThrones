@@ -31,7 +31,7 @@ class iOSTakeHomeChallengeTests: XCTestCase {
 
     override func tearDownWithError() throws {
         booksViewModel = nil
-        booksViewModel = nil
+        bookViewModel = nil
         books = nil
     }
 

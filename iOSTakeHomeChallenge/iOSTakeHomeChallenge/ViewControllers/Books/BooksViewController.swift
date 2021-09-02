@@ -11,7 +11,6 @@ import UIKit
 class BooksViewController: RootViewController, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
     private var viewModel: BooksViewModelType = BooksViewModel()
-    var cachedBooks: [Book] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,18 +32,18 @@ class BooksViewController: RootViewController, UITableViewDataSource {
     }
 
     func loadData(books: [Book]) {
-        cachedBooks = books
+        viewModel.cachedBooks = books
         reload(tableView: tableView)
         stopActivityIndicator()
     }
 
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        cachedBooks.count
+        viewModel.cachedBooks.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BooksTableViewCell.reuseIdentifierCell) as! BooksTableViewCell
-        cell.setupWith(bookViewModel: BookViewModel(book: cachedBooks[indexPath.row]))
+        cell.setupWith(bookViewModel: BookViewModel(book: viewModel.cachedBooks[indexPath.row]))
 
         return cell
     }

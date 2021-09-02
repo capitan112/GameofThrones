@@ -11,6 +11,9 @@ enum ConversionFailure: Error {
     case invalidData
     case missingData
     case responceError
+    case jsonDecondingError
+    case customError
+    case badURL
 }
 
 protocol NetworkDataFetcherProtocol {
@@ -58,11 +61,9 @@ final class NetworkDataFetcher: NetworkDataFetcherProtocol {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
         do {
-            let result = Result(catching: {
-                try decoder.decode(T.self, from: data)
-            })
-
-            completion(result)
+            completion(.success(try decoder.decode(T.self, from: data)))
+        } catch {
+            completion(.failure(ConversionFailure.jsonDecondingError))
         }
     }
 }

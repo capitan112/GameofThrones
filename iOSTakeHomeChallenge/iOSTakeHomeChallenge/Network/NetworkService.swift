@@ -14,7 +14,7 @@ protocol NetworkProtocol {
 final class NetworkService: NetworkProtocol {
     func request(path: String, completion: @escaping (Result<Data, Error>) -> Void) {
         guard let url = urlFromParameters(path: path) else {
-            completion(.failure(NSError(domain: "URL string error", code: -1, userInfo: nil)))
+            completion(.failure(ConversionFailure.badURL))
 
             return
         }
@@ -29,7 +29,10 @@ final class NetworkService: NetworkProtocol {
         return URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
 
             if error != nil || data == nil {
-                completion(.failure(error!))
+                if let error = error {
+                    debugPrint(error.localizedDescription)
+                }
+                completion(.failure(ConversionFailure.customError))
                 return
             }
 
@@ -48,6 +51,7 @@ final class NetworkService: NetworkProtocol {
     }
 
     private func urlFromParameters(path: String) -> URL? {
+        if path.isEmpty { return nil }
         var components = URLComponents()
         components.scheme = RequestConstant.Server.APIScheme
         components.host = RequestConstant.Server.APIHost

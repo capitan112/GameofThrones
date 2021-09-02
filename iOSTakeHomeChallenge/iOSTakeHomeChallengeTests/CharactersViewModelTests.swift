@@ -22,6 +22,7 @@ class CharactersViewModelTests: XCTestCase {
             switch response {
             case let .success(characters):
                 self.characters = characters
+                self.charactersViewModel.setUp(characters: characters)
             case let .failure(error):
                 debugPrint(error.localizedDescription)
                 XCTFail()
@@ -71,12 +72,12 @@ class CharactersViewModelTests: XCTestCase {
     }
 
     func testFilterCharactersByEmptyValue() throws {
-        let filteredCharacters = charactersViewModel.filtering(characters: characters, target: "")
-        XCTAssertEqual(filteredCharacters.count, 10)
+        charactersViewModel.filtering(with: "")
+        XCTAssertEqual(charactersViewModel.filteredCharacters.count, 10)
     }
 
     func testFilterCharactersByWalder() throws {
-        let filteredCharacters = charactersViewModel.filtering(characters: characters, target: "Walder")
-        XCTAssertEqual(filteredCharacters.count, 1)
+        charactersViewModel.filtering(with: "Walder")
+        XCTAssertEqual(charactersViewModel.filteredCharacters.count, 1)
     }
 }
