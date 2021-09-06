@@ -17,16 +17,12 @@ class iOSTakeHomeChallengeTests: XCTestCase {
         let networkServiceLocal = NetworkServiceLocal(json: booksJson)
         let localDataFetcher = NetworkDataFetcher(networkingService: networkServiceLocal)
         booksViewModel = BooksViewModel(dataFetcher: localDataFetcher)
-
-        booksViewModel.fetchBooks(completion: { response in
-            switch response {
-            case let .success(books):
+        booksViewModel.books.bind { books in
+            if let books = books {
                 self.books = books
-            case let .failure(error):
-                debugPrint(error.localizedDescription)
-                XCTFail()
             }
-        })
+        }
+        booksViewModel.fetchBooks()
     }
 
     override func tearDownWithError() throws {
@@ -36,15 +32,7 @@ class iOSTakeHomeChallengeTests: XCTestCase {
     }
 
     func testFetchResponseContainsValues() throws {
-        booksViewModel.fetchBooks(completion: { response in
-            switch response {
-            case let .success(books):
-                XCTAssertTrue(books.count > 0)
-            case let .failure(error):
-                debugPrint(error.localizedDescription)
-                XCTFail()
-            }
-        })
+        XCTAssertTrue(books.count > 0)
     }
 
     func testFirstItemInBooks() throws {

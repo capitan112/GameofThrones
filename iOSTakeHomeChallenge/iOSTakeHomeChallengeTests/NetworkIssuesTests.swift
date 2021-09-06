@@ -17,15 +17,7 @@ class NetworkIssuesTests: XCTestCase {
         let networkServiceLocal = NetworkServiceLocal(json: "")
         let localDataFetcher = NetworkDataFetcher(networkingService: networkServiceLocal)
         let booksViewModel = BooksViewModel(dataFetcher: localDataFetcher)
-
-        booksViewModel.fetchBooks(completion: { response in
-            switch response {
-            case .success:
-                XCTFail()
-            case let .failure(error):
-                XCTAssertEqual(ConversionFailure.jsonDecondingError, error as! ConversionFailure)
-            }
-        })
+        booksViewModel.fetchBooks()
     }
 
     func testFetchResponseWithBadURL() throws {

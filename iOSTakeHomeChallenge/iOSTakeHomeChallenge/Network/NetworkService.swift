@@ -26,7 +26,12 @@ final class NetworkService: NetworkProtocol {
     }
 
     private func createDataTask(from request: URLRequest, completion: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask {
-        return URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 15.0
+        sessionConfig.timeoutIntervalForResource = 15.0
+        let session = URLSession(configuration: sessionConfig)
+
+        return session.dataTask(with: request, completionHandler: { data, response, error in
 
             if error != nil || data == nil {
                 if let error = error {

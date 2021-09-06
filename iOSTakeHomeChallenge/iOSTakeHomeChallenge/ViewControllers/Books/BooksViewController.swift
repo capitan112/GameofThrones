@@ -11,39 +11,45 @@ import UIKit
 class BooksViewController: RootViewController, UITableViewDataSource {
     @IBOutlet var tableView: UITableView!
     private var viewModel: BooksViewModelType = BooksViewModel()
+    var cachedBooks: [Book] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addActivityIndicator(center: view.center)
+        setupBindings()
         getBooks()
+    }
+
+    private func setupBindings() {
+        viewModel.books.bind { books in
+            if let books = books {
+                self.cachedBooks = books
+            }
+        }
     }
 
     private func getBooks() {
         startActivityIndicator()
-        viewModel.fetchBooks(completion: { response in
-            switch response {
-            case let .success(books):
-                self.loadData(books: books)
-            case let .failure(error):
-                debugPrint(error.localizedDescription)
-                self.showAlertAndStopActivityIndicator()
-            }
-        })
+        viewModel.fetchBooks(fetchCompletion: loadData,
+                             errorCompletion: errorAlert)
     }
 
-    func loadData(books: [Book]) {
-        viewModel.cachedBooks = books
+    private func loadData() {
         reload(tableView: tableView)
         stopActivityIndicator()
     }
 
+    private func errorAlert() {
+        showAlertAndStopActivityIndicator()
+    }
+
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        viewModel.cachedBooks.count
+        cachedBooks.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BooksTableViewCell.reuseIdentifierCell) as! BooksTableViewCell
-        cell.setupWith(bookViewModel: BookViewModel(book: viewModel.cachedBooks[indexPath.row]))
+        cell.setupWith(bookViewModel: BookViewModel(book: cachedBooks[indexPath.row]))
 
         return cell
     }

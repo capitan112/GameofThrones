@@ -39,6 +39,7 @@
 		C9D7689926CFD58E00963BD2 /* HouseViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7689826CFD58E00963BD2 /* HouseViewModelTests.swift */; };
 		C9D7689B26CFD62100963BD2 /* JsonsStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D7689A26CFD62100963BD2 /* JsonsStub.swift */; };
 		C9DACD7926D2541C00754CF9 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DACD7826D2541C00754CF9 /* GCDBlackBox.swift */; };
+		C9E56BB526E4D1400097FCB6 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E56BB426E4D1400097FCB6 /* Bindable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		C9D7689826CFD58E00963BD2 /* HouseViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseViewModelTests.swift; sourceTree = "<group>"; };
 		C9D7689A26CFD62100963BD2 /* JsonsStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonsStub.swift; sourceTree = "<group>"; };
 		C9DACD7826D2541C00754CF9 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		C9E56BB426E4D1400097FCB6 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				C9DACD7826D2541C00754CF9 /* GCDBlackBox.swift */,
+				C9E56BB426E4D1400097FCB6 /* Bindable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				C9264F3326CD7B03003E4B69 /* BooksViewModel.swift in Sources */,
 				C9264F3726CD8228003E4B69 /* House.swift in Sources */,
 				117E69AF25F7A3B600E313E3 /* CharactersViewController.swift in Sources */,
+				C9E56BB526E4D1400097FCB6 /* Bindable.swift in Sources */,
 				C91677AA26CFE713009A6723 /* CharactersViewModel.swift in Sources */,
 				C91677AE26CFE911009A6723 /* CharacterViewModel.swift in Sources */,
 				C9D7687D26CE4D3F00963BD2 /* DateFormatter+Iso8601Full.swift in Sources */,
